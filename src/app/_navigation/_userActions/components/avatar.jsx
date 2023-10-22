@@ -12,7 +12,6 @@ import {
   Avatar,
   AvatarFallback as AvatarInitials,
 } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { User } from "lucide-react";
 import useSession from "@/hooks/clientSide/useSession";

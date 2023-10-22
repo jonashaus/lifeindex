@@ -83,7 +83,7 @@ const Weights = () => {
   }, [weights]);
 
   return (
-    <div className="w-full">
+    <>
       <div className="flex justify-between items-center">
         <h4 className="scroll-m-20 text-md font-semibold tracking-tight">
           Weight Tracking
@@ -120,7 +120,7 @@ const Weights = () => {
           </ResponsiveContainer>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

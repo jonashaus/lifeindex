@@ -10,7 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Pencil, Trash } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Pencil, Filter } from "lucide-react";
 import { LifeIndexContext } from "../lifeIndexContext";
 import { useState, useEffect, useContext } from "react";
 import {
@@ -103,28 +108,40 @@ const Achievements = () => {
   }, [filteredData]);
 
   return (
-    <div className="w-full">
+    <>
       <div className="flex justify-between items-center">
         <h4 className="scroll-m-20 text-md font-semibold tracking-tight">
           Achievement Tracking
         </h4>
         <div className="flex space-x-2">
-          <Select onValueChange={setSelectedHabit} defaultValue={selectedHabit}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a habit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="all">All</SelectItem>
-                {habits.length > 0 &&
-                  habits.map((habit, index) => (
-                    <SelectItem key={index} value={habit.id}>
-                      {habit.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Filter className="h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 w-fit">
+              <Select
+                onValueChange={setSelectedHabit}
+                defaultValue={selectedHabit}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select a habit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="all">All</SelectItem>
+                    {habits.length > 0 &&
+                      habits.map((habit, index) => (
+                        <SelectItem key={index} value={habit.id}>
+                          {habit.name}
+                        </SelectItem>
+                      ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </PopoverContent>
+          </Popover>
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant="outline" size="icon">
@@ -154,7 +171,7 @@ const Achievements = () => {
           </ResponsiveContainer>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

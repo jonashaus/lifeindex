@@ -17,13 +17,13 @@ const Layout = async ({ children }) => {
         {children}
         <Separator className="my-6" />
         <LifeIndexProvider>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col">
             <Habits />
           </div>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col">
             <Achievements />
           </div>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col">
             <Weights />
           </div>
         </LifeIndexProvider>

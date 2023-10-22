@@ -16,7 +16,7 @@ const LifeIndexProvider = ({ children }) => {
   const fetchHabits = async (userID) => {
     if (!userID) return {};
     const { data, error } = await supabase
-      .from("v_li_habits")
+      .from("v_habits")
       .select()
       .eq("user", userID)
       .order("last_achievement", { ascending: true });
@@ -47,7 +47,7 @@ const LifeIndexProvider = ({ children }) => {
     };
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_habits")
+      .from("habits")
       .insert(newHabit)
       .select();
     if (error) {
@@ -67,7 +67,7 @@ const LifeIndexProvider = ({ children }) => {
     console.log(updatedHabit);
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_habits")
+      .from("habits")
       .update(updatedHabit)
       .eq("id", updatedHabit.id);
     if (error) {
@@ -86,7 +86,7 @@ const LifeIndexProvider = ({ children }) => {
   const deleteHabit = async (habitID) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_habits")
+      .from("habits")
       .delete()
       .eq("id", habitID);
     if (error) {
@@ -110,7 +110,7 @@ const LifeIndexProvider = ({ children }) => {
   const fetchAchievements = async (userID) => {
     if (!userID) return {};
     const { data, error } = await supabase
-      .from("v_li_habitachievements")
+      .from("v_habitachievements")
       .select()
       .eq("habit_user", userID)
       .order("created_at", { ascending: false });
@@ -138,7 +138,7 @@ const LifeIndexProvider = ({ children }) => {
   const createAchievement = async (newAchievement) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_achievements")
+      .from("achievements")
       .insert({ ...newAchievement, created_at: new Date().toISOString() });
     if (error) {
       toast({
@@ -156,7 +156,7 @@ const LifeIndexProvider = ({ children }) => {
   const updateAchievement = async (updatedAchievement) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_achievements")
+      .from("achievements")
       .update(updatedAchievement)
       .eq("id", updatedAchievement.id);
     if (error) {
@@ -175,7 +175,7 @@ const LifeIndexProvider = ({ children }) => {
   const deleteAchievement = async (achievementID) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_achievements")
+      .from("achievements")
       .delete()
       .eq("id", achievementID);
     if (error) {
@@ -198,7 +198,7 @@ const LifeIndexProvider = ({ children }) => {
   const fetchWeight = async (userID) => {
     if (!userID) return {};
     const { data, error } = await supabase
-      .from("li_weights")
+      .from("weights")
       .select()
       .eq("user", userID)
       .order("created_at");
@@ -226,7 +226,7 @@ const LifeIndexProvider = ({ children }) => {
     if (!session?.user) return;
 
     const { data, error } = await supabase
-      .from("li_weights")
+      .from("weights")
       .insert({ ...newWeight, user: session.user.id });
     if (error) {
       toast({
@@ -244,7 +244,7 @@ const LifeIndexProvider = ({ children }) => {
   const updateWeight = async (updatedWeight) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_weights")
+      .from("weights")
       .update(updatedWeight)
       .eq("id", updatedWeight.id);
     if (error) {
@@ -263,7 +263,7 @@ const LifeIndexProvider = ({ children }) => {
   const deleteWeight = async (weightID) => {
     if (!session?.user) return;
     const { data, error } = await supabase
-      .from("li_weights")
+      .from("weights")
       .delete()
       .eq("id", weightID);
     if (error) {

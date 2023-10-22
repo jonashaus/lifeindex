@@ -23,10 +23,14 @@ const Habits = () => {
           <HabitsDialog habits={habits} />
         </AlertDialog>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full">
-        {habits.length > 0 &&
-          habits.map((habit, i) => <Habit key={i} habit={habit} />)}
-      </div>
+      {habits.length == 0 && <div className="mt-0">No habits yet</div>}
+      {habits.length > 0 && (
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+          {habits.map((habit, i) => (
+            <Habit key={i} habit={habit} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
