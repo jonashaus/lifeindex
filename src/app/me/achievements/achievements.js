@@ -29,7 +29,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import AchievementsDialog from "./components/achievementsDialog";
-import { set } from "date-fns";
 
 const Achievements = () => {
   const { habits, achievements } = useContext(LifeIndexContext); //  1 - All data

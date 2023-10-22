@@ -34,7 +34,7 @@ const Login = () => {
       });
       return;
     }
-    router.refresh();
+    router.push("/me");
     toast({ title: "Welcome back", description: "You are now logged in." });
   };
 
