@@ -1,5 +1,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import LoginDialog from "./_navigation/_userActions/components/loginDialog";
+import RegisterDialog from "./_navigation/_userActions/components/registerDialog";
+
 export default function Home() {
   return (
     <div
@@ -8,13 +12,32 @@ export default function Home() {
     >
       <div className="text-center md:text-start">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Life Index
+          LifeIndex
         </h1>
         <p className="scroll-m-20 text-xl text-gray-500 lg:text-2xl">
           A place to track your habits
         </p>
+
         <p className="text-sm text-muted-foreground">
-          100% free to use. Made with ❤️ by Jonas.
+          To get started, please{" "}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="link" className="px-0">
+                register
+              </Button>
+            </AlertDialogTrigger>
+            <RegisterDialog />
+          </AlertDialog>{" "}
+          or{" "}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="link" className="px-0">
+                login
+              </Button>
+            </AlertDialogTrigger>
+            <LoginDialog />
+          </AlertDialog>
+          .
         </p>
       </div>
       <div className="flex justify-center md:justify-end">

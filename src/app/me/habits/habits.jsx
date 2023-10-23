@@ -25,7 +25,7 @@ const Habits = () => {
       </div>
       {habits.length == 0 && <div className="mt-0">No habits yet</div>}
       {habits.length > 0 && (
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+        <div className="mt-4 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 w-full">
           {habits.map((habit, i) => (
             <Habit key={i} habit={habit} />
           ))}
@@ -53,12 +53,14 @@ const Habit = ({ habit }) => {
           ? "outline"
           : ""
       }
-      className="h-24 relative overflow-hidden"
+      className="h-16 md:h-24 relative overflow-hidden"
       onClick={handleAddAchievement}
     >
-      {habit.name}
+      <small className="text-xs font-medium leading-1 whitespace-normal md:text-sm">
+        {habit.name}
+      </small>
       <div className="-mt-1.5 absolute top-0 right-0 transition transform translate-x-[-2px]">
-        <div className="p-2">+{habit.points}</div>
+        <div className="p-2 text-xs md:text-sm">+{habit.points}</div>
       </div>
     </Button>
   );

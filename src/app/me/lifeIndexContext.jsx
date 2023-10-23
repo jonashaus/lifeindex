@@ -147,9 +147,9 @@ const LifeIndexProvider = ({ children }) => {
       });
       return;
     }
-    toast({
+    /* toast({
       title: "Achievement recorded!",
-    });
+    }); */
     getAchievements();
   };
 
