@@ -40,7 +40,7 @@ const About = () => {
       </div>
       <div className="flex justify-center">
         <Image
-          src="/jonas2.jpg"
+          src="/jonas.jpg"
           alt="Woman with checklist"
           width={368}
           height={100}
