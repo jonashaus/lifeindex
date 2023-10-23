@@ -15,7 +15,7 @@ const Layout = async ({ children }) => {
     <div className="container">
       <div className="space-y-6 pt-8 pb-16">
         {children}
-        <Separator className="my-6" />
+        <Separator className="my-4" />
         <LifeIndexProvider>
           <div className="flex flex-col">
             <Habits />

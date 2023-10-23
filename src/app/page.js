@@ -24,7 +24,7 @@ export default function Home() {
         </p>
         {session && (
           <Button className="mt-4">
-            <Link href="/me">Your Dashboard</Link>
+            <Link href="/me">Go to Dashboard</Link>
           </Button>
         )}
         {!session && (
