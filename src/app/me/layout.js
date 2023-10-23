@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 const Layout = async ({ children }) => {
   const session = await useSession();
   if (!session) {
-    redirect("/user/unauthenticated");
+    redirect("/");
   }
   return (
     <div className="container">

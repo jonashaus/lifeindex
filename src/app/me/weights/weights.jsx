@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Pencil, Plus } from "lucide-react";
+import { Pencil, Plus, Loader2 } from "lucide-react";
 import { LifeIndexContext } from "../lifeIndexContext";
 import { useState, useEffect, useContext } from "react";
 import {
@@ -18,6 +18,8 @@ import { CreateWeightDialog } from "./components/weightsDialog";
 const Weights = () => {
   const { weights } = useContext(LifeIndexContext); //  1 - All data
   const [visualizationData, setVisualizationData] = useState([]); // 2 - The data that is used for the visualization
+  const [loading, setLoading] = useState(true); // 3 - Loading state
+  const [open, setOpen] = useState(false); // 4 - Dialog state
 
   function interpolateWeights(data) {
     let result = [];
@@ -62,6 +64,7 @@ const Weights = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
     const getInterpolatedData = async () => {
       const transformedData = weights.map((item) => ({
         id: item.id,
@@ -80,6 +83,7 @@ const Weights = () => {
     if (weights.length > 0) {
       getInterpolatedData();
     }
+    setLoading(false);
   }, [weights]);
 
   return (
@@ -89,13 +93,13 @@ const Weights = () => {
           Weight Tracking
         </h4>
         <div className="flex space-x-2">
-          <AlertDialog>
+          <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
               <Button variant="outline" size="icon">
                 <Plus className="h-4 w-4" />
               </Button>
             </AlertDialogTrigger>
-            <CreateWeightDialog />
+            <CreateWeightDialog setOpen={setOpen} />
           </AlertDialog>
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -107,18 +111,27 @@ const Weights = () => {
           </AlertDialog>
         </div>
       </div>
-      {weights.length == 0 && <div>No weights yet</div>}
-      {weights.length > 0 && (
-        <div className="mt-4">
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart width={400} height={400} data={visualizationData}>
-              <XAxis dataKey="created_at" interval="preserveStartEnd" />
-              <YAxis type="number" domain={["dataMin", "dataMax"]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="weight" stroke="#666666" />
-            </LineChart>
-          </ResponsiveContainer>
+      {loading && (
+        <div className="flex justify-center">
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
         </div>
+      )}
+      {!loading && (
+        <>
+          {weights.length == 0 && <div>No weights yet</div>}
+          {weights.length > 0 && (
+            <div className="mt-4">
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart width={400} height={400} data={visualizationData}>
+                  <XAxis dataKey="created_at" interval="preserveStartEnd" />
+                  <YAxis type="number" domain={["dataMin", "dataMax"]} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Line type="monotone" dataKey="weight" stroke="#666666" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </>
       )}
     </>
   );

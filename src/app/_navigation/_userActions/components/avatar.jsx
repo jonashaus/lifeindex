@@ -29,7 +29,7 @@ const UserAvatar = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/");
+    router.refresh();
     toast({ title: "Goodbye :)", description: "...and see you soon." });
   };
 

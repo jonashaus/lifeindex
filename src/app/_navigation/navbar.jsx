@@ -2,7 +2,6 @@
 import Logo from "./components/logo";
 import ThemeSwitch from "./components/themeSwitch";
 import UserActions from "./_userActions/userActions";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -15,12 +14,7 @@ const Navbar = () => {
         className={`mx-auto py-2 flex justify-between items-center bg-background transition-maxwidth duration-1000 ${navClass}`}
       >
         <Logo />
-        <p className="text-xs text-muted-foreground">
-          Free to use.{" "}
-          <Link href="/about" className="hover:underline">
-            Made with ❤️ by Jonas
-          </Link>
-        </p>
+
         <div className="flex items-center space-x-2">
           <ThemeSwitch />
 

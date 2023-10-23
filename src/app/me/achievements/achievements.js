@@ -6,7 +6,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -15,17 +14,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Pencil, Filter } from "lucide-react";
+import { Pencil, Filter, Loader2 } from "lucide-react";
 import { LifeIndexContext } from "../lifeIndexContext";
 import { useState, useEffect, useContext } from "react";
 import {
   AreaChart,
   Area,
-  CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import AchievementsDialog from "./components/achievementsDialog";
@@ -35,8 +32,10 @@ const Achievements = () => {
   const [filteredData, setFilteredData] = useState([]); //           2 - The data that is filtered by the habit selector
   const [visualizationData, setVisualizationData] = useState([]); // 3 - The data that is used for the visualization
   const [selectedHabit, setSelectedHabit] = useState("all");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (selectedHabit == "all") {
       setFilteredData(achievements);
     } else {
@@ -45,11 +44,11 @@ const Achievements = () => {
       );
       setFilteredData(filtered);
     }
+    setLoading(false);
   }, [selectedHabit, achievements]);
 
   useEffect(() => {
     if (filteredData.length > 0) {
-      console.log(filteredData);
       const transformedData = filteredData.map((item) => ({
         id: item.id,
         created_at: item.created_at.split("T")[0],
@@ -112,6 +111,7 @@ const Achievements = () => {
         <h4 className="scroll-m-20 text-md font-semibold tracking-tight">
           Achievement Tracking
         </h4>
+
         <div className="flex space-x-2">
           <Popover>
             <PopoverTrigger asChild>
@@ -151,31 +151,40 @@ const Achievements = () => {
           </AlertDialog>
         </div>
       </div>
-      {achievements.length == 0 && <div>No achievements yet</div>}
-      {achievements.length > 0 && (
-        <div className="mt-4">
-          <ResponsiveContainer width="100%" height={300}>
-            <AreaChart width={400} height={400} data={visualizationData}>
-              <XAxis dataKey="created_at" interval="preserveStartEnd" />
-              <YAxis />
-              <Tooltip content={<CustomTooltip />} />
-              <Area
-                type="monotone"
-                dataKey="points"
-                fill=""
-                stackId={1}
-                stroke=""
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+      {loading && (
+        <div className="flex justify-center">
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
         </div>
+      )}
+      {!loading && (
+        <>
+          {achievements.length == 0 && <div>No achievements yet</div>}
+          {achievements.length > 0 && (
+            <div className="mt-4">
+              <ResponsiveContainer width="100%" height={300}>
+                <AreaChart width={400} height={400} data={visualizationData}>
+                  <XAxis dataKey="created_at" interval="preserveStartEnd" />
+                  <YAxis />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Area
+                    type="monotone"
+                    dataKey="points"
+                    fill=""
+                    stackId={1}
+                    stroke=""
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </>
       )}
     </>
   );
 };
 
 const CustomTooltip = ({ active, payload, label }) => {
-  if (active) {
+  if (active && payload && payload.length) {
     return (
       <div className="bg-white p-2 shadow-md rounded-md space-y-2">
         <p className="font-semibold">

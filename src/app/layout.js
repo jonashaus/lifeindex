@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Providers from "./providers";
 import Navbar from "./_navigation/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,14 @@ export default function RootLayout({ children }) {
             <Navbar />
           </header>
           <main>{children}</main>
+          <footer className="fixed bottom-0 w-full bg-background py-1">
+            <p className="text-xs text-muted-foreground text-center">
+              Free to use. Made with ❤️ by{" "}
+              <Link href="/about" className="underline">
+                Jonas
+              </Link>
+            </p>
+          </footer>
           <Toaster />
         </Providers>
       </body>
