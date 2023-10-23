@@ -30,7 +30,7 @@ const RegisterDialog = () => {
       email: credentials.email,
       password: credentials.password,
       options: {
-        emailRedirectTo: `${location.origin}/verify`,
+        emailRedirectTo: `${location.origin}`,
         data: ipData,
       },
     });
