@@ -15,7 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning="true">
-      <head></head>
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
       <body className={inter.className} cz-shortcut-listen="true">
         {/* remove the "cz-shortcut-listen" in prod, it's only to suppress hydration warnings from the colorzilla extension */}
         <Providers>
