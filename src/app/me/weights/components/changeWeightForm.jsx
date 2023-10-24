@@ -59,6 +59,9 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
                 <Input
                   type="number"
                   placeholder="42.0"
+                  inputmode="numeric"
+                  pattern="[0-9\.]*"
+                  step="any"
                   {...field}
                   onChange={(e) =>
                     field.onChange(parseFloat(e.target.value.replace(",", ".")))
