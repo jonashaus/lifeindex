@@ -49,8 +49,12 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
 
   const handleWeightInput = (value) => {
     toast({ title: `Value: --${value}--` });
+    console.log(value);
     if (value === "") {
       return 0;
+    }
+    if (value.slice(-1) == ".") {
+      return parseFloat(value.substr(0, value.length - 1));
     }
     return parseFloat(value.replace(",", "."));
   };
