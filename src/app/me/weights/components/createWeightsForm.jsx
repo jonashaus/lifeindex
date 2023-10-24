@@ -59,8 +59,11 @@ const CreateWeightForm = ({ setOpen }) => {
                 <Input
                   type="number"
                   placeholder="42.0"
+                  step="any"
                   {...field}
-                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                  onChange={(e) =>
+                    field.onChange(parseFloat(e.target.value.replace(",", ".")))
+                  }
                 />
               </FormControl>
               <FormDescription>Enter your weight in kilograms.</FormDescription>
