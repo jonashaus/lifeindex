@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { format } from "date-fns";
 import { LifeIndexContext } from "../../lifeIndexContext";
 import { useContext } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 const weightFormSchema = z.object({
   id: z.number().int(),
@@ -46,6 +47,14 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
     )();
   };
 
+  const handleWeightInput = (value) => {
+    toast({ title: `Value: --${value}--` });
+    if (value === "") {
+      return 0;
+    }
+    return parseFloat(value.replace(",", "."));
+  };
+
   return (
     <Form {...form}>
       <form onSubmit={(e) => submitBeforeDialogClose(e)} className="space-y-8">
@@ -59,12 +68,9 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
                 <Input
                   type="number"
                   placeholder="42.0"
-                  inputmode="numeric"
-                  pattern="[0-9\.]*"
-                  step="any"
                   {...field}
                   onChange={(e) =>
-                    field.onChange(parseFloat(e.target.value.replace(",", ".")))
+                    field.onChange(handleWeightInput(e.target.value))
                   }
                 />
               </FormControl>
