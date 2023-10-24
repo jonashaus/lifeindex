@@ -48,8 +48,6 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
   };
 
   const handleWeightInput = (value) => {
-    toast({ title: `Value: --${value}--` });
-    console.log(value);
     if (value === "") {
       return "";
     }
@@ -88,7 +86,7 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
           name="created_at"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight</FormLabel>
+              <FormLabel>Date</FormLabel>
               <FormControl>
                 <Input
                   type="date"
@@ -97,7 +95,9 @@ const ChangeWeightForm = ({ weight, setOpen }) => {
                   onChange={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
-              <FormDescription>Enter your weight in kilograms.</FormDescription>
+              <FormDescription>
+                Enter the date you weighed yourself.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -46,6 +46,16 @@ const CreateWeightForm = ({ setOpen }) => {
     )();
   };
 
+  const handleWeightInput = (value) => {
+    if (value === "") {
+      return "";
+    }
+    if (value.slice(-1) == ".") {
+      return parseFloat(value.substr(0, value.length - 1));
+    }
+    return parseFloat(value.replace(",", "."));
+  };
+
   return (
     <Form {...form}>
       <form onSubmit={(e) => submitBeforeDialogClose(e)} className="space-y-8">
@@ -62,7 +72,7 @@ const CreateWeightForm = ({ setOpen }) => {
                   step="any"
                   {...field}
                   onChange={(e) =>
-                    field.onChange(parseFloat(e.target.value.replace(",", ".")))
+                    field.onChange(handleWeightInput(e.target.value))
                   }
                 />
               </FormControl>
