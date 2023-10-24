@@ -76,9 +76,7 @@ const EditWeightDialog = ({ weight, setOpen }) => {
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>Edit Weight</AlertDialogTitle>
-        <AlertDialogDescription>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        </AlertDialogDescription>
+        <AlertDialogDescription>Add your weight.</AlertDialogDescription>
       </AlertDialogHeader>
       <ChangeWeightForm weight={weight} setOpen={setOpen} />
     </AlertDialogContent>
