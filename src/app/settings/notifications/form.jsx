@@ -53,7 +53,7 @@ const NotificationsForm = () => {
           control={form.control}
           name="companyNotifications"
           label="Company News"
-          description="Follow the entrepreneurial journey of apex9."
+          description="Follow the entrepreneurial journey of LifeIndex."
         />
         <NotificationItem
           control={form.control}

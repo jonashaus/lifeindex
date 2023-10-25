@@ -145,7 +145,7 @@ export const DeleteAccount = () => {
     toast({
       title: "Account deleted successfully",
       description:
-        "Fare well dear friend. Thank you for using apex9 - we will miss you :(",
+        "Fare well dear friend. Thank you for using LifeIndex - we will miss you :(",
     });
   };
 

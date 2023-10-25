@@ -69,7 +69,7 @@ const AccountForm = () => {
           control={form.control}
           name="language"
           label="Preferred Language"
-          description="Currently, apex9 is only available in English - we're just asking for statistical reasons to find out whether we should translate apex9 to German."
+          description="Currently, LifeIndex is only available in English - we're just asking for statistical reasons to find out whether we should translate LifeIndex to German."
           renderFormControl={(field) => (
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger>
