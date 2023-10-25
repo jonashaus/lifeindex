@@ -201,7 +201,7 @@ const LifeIndexProvider = ({ children }) => {
       .from("weights")
       .select()
       .eq("user", userID)
-      .order("created_at");
+      .order("created_at", { ascending: false });
     if (error) {
       toast({
         title: "Ooops, something went wrong.",
