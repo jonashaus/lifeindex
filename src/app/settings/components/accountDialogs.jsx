@@ -16,13 +16,13 @@ import { Button } from "@/components/ui/button";
 import CredentialsForm from "@/app/_navigation/_userActions/components/credentialsForm";
 import { Lock, Mail, Trash } from "lucide-react";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 
 export const ChangePassword = () => {
   const supabase = createClientComponentClient();
-  const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const handleChangePassword = async (credentials) => {
     console.log(credentials.password);
@@ -37,7 +37,7 @@ export const ChangePassword = () => {
       });
       return;
     }
-    router.refresh();
+    setOpen(false);
     toast({
       title: "Done!",
       description: "Your password was changed successfully.",
@@ -45,7 +45,7 @@ export const ChangePassword = () => {
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={() => setOpen(!open)}>
       <AlertDialogTrigger asChild>
         <Button variant="destructive">
           <Lock className="mr-2" size={16} /> Change Password
@@ -66,7 +66,7 @@ export const ChangePassword = () => {
 
 export const ChangeEmail = () => {
   const supabase = createClientComponentClient();
-  const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const handleChangeEmail = async (credentials) => {
     const { data, error } = await supabase.auth.updateUser({
@@ -80,7 +80,7 @@ export const ChangeEmail = () => {
       });
       return;
     }
-    router.refresh();
+    setOpen(false);
     toast({
       title: "Confirmation Required",
       description:
@@ -89,7 +89,7 @@ export const ChangeEmail = () => {
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={() => setOpen(!open)}>
       <AlertDialogTrigger asChild>
         <Button variant="destructive">
           <Mail className="mr-2" size={16} /> Change Email
@@ -116,6 +116,7 @@ export const DeleteAccount = () => {
   const router = useRouter();
   const confirmationRef1 = useRef();
   const confirmationRef2 = useRef();
+  const [open, setOpen] = useState(false);
 
   const handleDeleteAccount = async () => {
     if (
@@ -142,6 +143,7 @@ export const DeleteAccount = () => {
     }
     await supabase.auth.signOut();
     router.push("/");
+    setOpen(false);
     toast({
       title: "Account deleted successfully",
       description:
@@ -150,7 +152,7 @@ export const DeleteAccount = () => {
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={() => setOpen(!open)}>
       <AlertDialogTrigger asChild>
         <Button variant="destructive">
           <Trash className="mr-2" size={16} /> Delete Account
