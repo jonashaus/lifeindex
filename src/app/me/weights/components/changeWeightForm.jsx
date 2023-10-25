@@ -21,10 +21,9 @@ import { Input } from "@/components/ui/input";
 import { format } from "date-fns";
 import { LifeIndexContext } from "../../lifeIndexContext";
 import { useContext } from "react";
-import { toast } from "@/components/ui/use-toast";
 
 const weightFormSchema = z.object({
-  id: z.number().int(),
+  id: z.string().uuid(),
   created_at: z.date(),
   weight: z.number(),
 });
