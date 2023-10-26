@@ -12,7 +12,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Switch } from "@/components/ui/switch";
 import { SettingsContext } from "../settingsContext";
@@ -20,7 +19,6 @@ import { useEffect, useContext } from "react";
 
 const notificationsFormSchema = z.object({
   productNotifications: z.boolean(),
-  companyNotifications: z.boolean(),
   systemNotifications: z.boolean(),
 });
 
@@ -48,12 +46,6 @@ const NotificationsForm = () => {
           name="productNotifications"
           label="Product Development"
           description="Stay updated about new features and improvements."
-        />
-        <NotificationItem
-          control={form.control}
-          name="companyNotifications"
-          label="Company News"
-          description="Follow the entrepreneurial journey of LifeIndex."
         />
         <NotificationItem
           control={form.control}
