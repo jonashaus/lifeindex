@@ -111,7 +111,6 @@ const Achievements = () => {
         <h4 className="scroll-m-20 text-md font-semibold tracking-tight">
           Achievement Tracking
         </h4>
-
         <div className="flex space-x-2">
           <Popover>
             <PopoverTrigger asChild>
@@ -163,13 +162,18 @@ const Achievements = () => {
             <div className="mt-4">
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart width={400} height={400} data={visualizationData}>
-                  <XAxis dataKey="created_at" interval="preserveStartEnd" />
-                  <YAxis />
+                  <XAxis
+                    dataKey="created_at"
+                    interval="preserveStartEnd"
+                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                  />
+                  <YAxis tick={{ fill: "hsl(var(--muted-foreground))" }} />
                   <Tooltip content={<CustomTooltip />} />
                   <Area
                     type="monotone"
                     dataKey="points"
-                    fill=""
+                    fill="hsl(var(--border))"
+                    fillOpacity={1}
                     stackId={1}
                     stroke=""
                   />
@@ -186,7 +190,7 @@ const Achievements = () => {
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white p-2 shadow-md rounded-md space-y-2">
+      <div className="bg-background p-2 shadow-lg rounded-md space-y-2">
         <p className="font-semibold">
           <span className="mr-2 p-2 rounded-lg bg-secondary">
             {payload[0].value} points

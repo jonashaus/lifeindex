@@ -123,10 +123,22 @@ const Weights = () => {
             <div className="mt-4">
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart width={400} height={400} data={visualizationData}>
-                  <XAxis dataKey="created_at" interval="preserveStartEnd" />
-                  <YAxis type="number" domain={["dataMin", "dataMax"]} />
+                  <XAxis
+                    dataKey="created_at"
+                    interval="preserveStartEnd"
+                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                  />
+                  <YAxis
+                    type="number"
+                    domain={["dataMin", "dataMax"]}
+                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                  />
                   <Tooltip content={<CustomTooltip />} />
-                  <Line type="monotone" dataKey="weight" stroke="#666666" />
+                  <Line
+                    type="monotone"
+                    dataKey="weight"
+                    stroke="hsl(var(--foreground))"
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -140,7 +152,7 @@ const Weights = () => {
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
     return (
-      <div className="bg-white p-2 rounded-md">
+      <div className="bg-background p-2 rounded-md">
         <p className="font-semibold my-1 ">
           <span className="mr-2 p-2 rounded-lg bg-secondary">
             {payload[0].value} kg
