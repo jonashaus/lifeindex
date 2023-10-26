@@ -55,10 +55,9 @@ const UserAvatar = () => {
       <DropdownMenuContent className="mr-2">
         <DropdownMenuLabel>{profile.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push("/settings")}>
-          Settings
+        <DropdownMenuItem onClick={() => router.push("/me")}>
+          Dashboard
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => router.push("/settings")}>
           Settings
         </DropdownMenuItem>
