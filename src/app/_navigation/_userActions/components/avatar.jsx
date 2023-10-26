@@ -59,6 +59,10 @@ const UserAvatar = () => {
           Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => router.push("/settings")}>
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
