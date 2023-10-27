@@ -51,14 +51,7 @@ const SettingsProvider = ({ children }) => {
       return;
     }
     toast({
-      title: "The following settings were saved successfully:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">
-            {JSON.stringify(newSettings, null, 2)}
-          </code>
-        </pre>
-      ),
+      title: "Settings updated!",
     });
     setUserSettings(await fetchUserSettings(session.user.id));
   };
