@@ -5,7 +5,7 @@ LifeIndex is a web application made to help people track their habits & weight. 
 
 ## Technology Stack
 
-I used the following technologies:
+LifeIndex is based on the following technologies:
 
 - Next.js: As fullstack framework (Next.js = React + Node.js)
 - Supabase: As cloud database & authentication provider
