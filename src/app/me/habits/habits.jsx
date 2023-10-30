@@ -48,8 +48,8 @@ const Habit = ({ habit }) => {
     <Button
       // if habit.last_achievement is today, set the variant to "outline"
       variant={
-        new Date(habit.last_achievement).toLocaleDateString() ===
-        new Date().toLocaleDateString()
+        new Date(habit.last_achievement).toISOString().split("T")[0] ===
+        new Date().toISOString().split("T")[0]
           ? "outline"
           : ""
       }

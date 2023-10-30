@@ -70,6 +70,8 @@ const Achievements = () => {
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
       );
 
+      console.log("sortedData", sortedData);
+
       // Find earliest date in the sortedData
       const earliestDate = new Date(sortedData[0].created_at);
 
@@ -89,8 +91,9 @@ const Achievements = () => {
       // Merge the sortedData with the allDates array, filling in missing data with zeroes
       const completeData = allDates.map((date) => {
         const existingData = sortedData.find(
-          (item) => new Date(item.created_at).getTime() === date.getTime()
+          (item) => item.created_at == date.toISOString().split("T")[0]
         );
+
         return existingData
           ? existingData
           : {
@@ -102,6 +105,7 @@ const Achievements = () => {
       });
 
       setVisualizationData(completeData);
+      console.log(completeData);
     }
   }, [filteredData]);
 
