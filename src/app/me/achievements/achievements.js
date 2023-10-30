@@ -70,8 +70,6 @@ const Achievements = () => {
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
       );
 
-      console.log("sortedData", sortedData);
-
       // Find earliest date in the sortedData
       const earliestDate = new Date(sortedData[0].created_at);
 
@@ -105,7 +103,6 @@ const Achievements = () => {
       });
 
       setVisualizationData(completeData);
-      console.log(completeData);
     }
   }, [filteredData]);
 
