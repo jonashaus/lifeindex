@@ -202,7 +202,7 @@ const ForgotPassword = () => {
     const { data, error } = await supabase.auth.resetPasswordForEmail(
       ref.current.value,
       {
-        redirectTo: `${location.origin}/account/verify`,
+        redirectTo: `${location.origin}/settings`,
       }
     );
     if (error) {
